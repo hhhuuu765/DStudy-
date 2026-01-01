@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DSTUDY</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial}
+body{--bg:#f7f7f8;--card:#ffffff;--text:#1f1f1f;--sub:#5f6368;--accent:#1a73e8;--border:#e5e7eb;background:var(--bg);color:var(--text);transition:.3s ease all}
+body.dark{--bg:#0f1115;--card:#16191f;--text:#e8eaed;--sub:#9aa0a6;--accent:#8ab4f8;--border:#2a2c33}
+.app{max-width:980px;margin:auto;padding:16px 14px 80px}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:8px 0 14px}
+.brand{font-weight:700;letter-spacing:.2px;font-size:22px;display:flex;align-items:center;gap:8px}
+.google-waves{width:32px;height:32px;border-radius:50%;background:conic-gradient(from 0deg, #4285f4, #34a853, #fbbc04, #ea4335, #4285f4);animation:spin 4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.toggle{position:relative;width:54px;height:28px;border-radius:28px;background:var(--border);cursor:pointer}
+.toggle .ball{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--card);box-shadow:0 2px 6px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;transition:.25s}
+body.dark .toggle .ball{transform:translateX(26px)}
+.section-title{font-size:15px;font-weight:600;color:var(--sub);margin:20px 2px 8px;text-transform:uppercase;letter-spacing:.5px}
+.card{background:var(--card);border-radius:18px;padding:16px 14px;border:1px solid var(--border);box-shadow:0 4px 18px rgba(0,0,0,.05);transition:.25s}
+.card:hover{box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.grid{display:grid;gap:10px}
+.btn{padding:12px 14px;border-radius:14px;background:#e8f0fe;border:1px solid #d2e3fc;color:#174ea6;font-size:15px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+body.dark .btn{background:#202c3a;border-color:#253244;color:#cbd9ff}
+.label{font-size:14px;color:var(--sub)}
+.badge{padding:2px 8px;border-radius:999px;border:1px solid var(--border);font-size:12px}
+.sheet{position:fixed;left:0;right:0;bottom:-100%;background:var(--card);border-radius:22px 22px 0 0;box-shadow:0 -20px 50px rgba(0,0,0,.3);padding:14px 14px 28px;max-height:88vh;overflow-y:auto;transition:.35s}
+.sheet.open{bottom:0}
+.sheet h2{font-size:18px;margin-bottom:2px}
+.item{padding:10px 12px;border-radius:14px;border:1px solid var(--border);display:flex;flex-direction:column;gap:4px}
+.row{display:flex;flex-wrap:wrap;gap:6px}
+.chip{padding:6px 10px;border-radius:12px;border:1px dashed var(--border);font-size:13px;cursor:pointer}
+.link{color:var(--accent);font-weight:500;font-size:14px;cursor:pointer}
+.notice{background:linear-gradient(135deg,#e8f0fe,#ffffff);border:1px solid #d2e3fc}
+body.dark .notice{background:linear-gradient(135deg,#1c2533,#16191f);border-color:#253244}
+.sheet-header button:hover{opacity:.8}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="topbar">
+<div class="brand"><div class="google-waves"></div>DSTUDY</div>
+<div class="toggle" onclick="toggleTheme()"><div class="ball">🌞</div></div>
+</div><div class="card notice">
+<div class="label">Upcoming study</div>
+<div style="margin-top:6px;font-size:15px">Tuition every <b>Friday</b> • 11:00 AM</div>
+</div><div class="section-title">Notice Board</div>
+<div class="card">
+<div class="grid">
+<div class="btn" onclick="openDrive('PASTE_NOTICE_PDF_LINK_HERE')">Open latest notice PDF</div>
+<div class="btn" onclick="openDrive('PASTE_SECOND_NOTICE_PDF_LINK_HERE')">Another notice PDF</div>
+</div>
+<div class="label" style="margin-top:6px"> </div>
+</div><div class="section-title">Classes</div>
+<div class="card">
+<div class="grid">
+<div class="btn" onclick="openSheet('class8')">Class 8</div>
+<div class="btn" onclick="alert('Class 6 – Coming soon')">Class 6</div>
+<div class="btn" onclick="alert('Class 7 – Coming soon')">Class 7</div>
+<div class="btn" onclick="alert('Class 9 – Coming soon')">Class 9</div>
+<div class="btn" onclick="alert('Class 10 – Coming soon')">Class 10</div>
+</div>
+</div>
+</div><!-- Bottom Sheets --><div id="class8" class="sheet">
+<div class="sheet-header" style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+<button onclick="closeAll()" style="border:none;background:transparent;font-size:18px;cursor:pointer">⬅</button>
+<h2 style="margin:0">Class 8</h2>
+</div>
+<p class="label">Subjects</p>
+<div class="grid">
+<div class="btn" onclick="openSheet('class8math')">Mathematics</div>
+<div class="btn" onclick="openSheet('class8science')">Science</div>
+</div>
+</div><div id="class8math" class="sheet">
+<div class="sheet-header" style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+<button onclick="openSheet('class8')" style="border:none;background:transparent;font-size:18px;cursor:pointer">⬅</button>
+<h2 style="margin:0">Class 8 • Mathematics</h2>
+</div>
+<p class="label">Chapters</p>
+<div class="grid"></div>
+</div><div id="class8science" class="sheet">
+<div class="sheet-header" style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+<button onclick="openSheet('class8')" style="border:none;background:transparent;font-size:18px;cursor:pointer">⬅</button>
+<h2 style="margin:0">Class 8 • Science</h2>
+</div>
+<p class="label">Chapters</p>
+<div class="grid" id="scienceList"></div>
+</div>
+<h2>Class 8 • Science</h2>
+<p class="label">Chapters</p>
+<div class="grid" id="scienceList"></div>
+</div><script>
+const mathChapters = [
+"পূর্বপাঠের পুনরালোচনা","পাই চিত্র","মূলদ সংখ্যার ধারণা","বীজগাণিতিক সংখ্যামালার গুণ ও ভাগ","ঘনফল নির্নয়","পূরক কোণ সম্পূরক কোণ","বিপ্রতীপ কোণ","সমান্তরাল সরলরেখা","ত্রিভুজের বাহু-কোণ সম্পর্ক","ত্রৈরাশিক","শতকরা","মিশ্রন","গসাগু ও লসাগু","সরলীকরণ","ত্রিভুজ যাচাই","সময় ও কার্য","লেখচিত্র","সমীকরণ","জ্যামিতিক প্রমাণ","ত্রিভুজ অঙ্কন"
+];
+
+const scienceChapters = [
+"ভৌত পরিবেশ","মৌল যৌগ বিক্রিয়া","কয়েকটি গ্যাস","কার্বন যৌগ","প্রাকৃতিক ঘটনা","জীবদেহের গঠন","অণুজীব","খাদ্য উৎপাদন","অন্তঃক্ষরা গ্রন্থি","জীববৈচিত্র","পরিবেশ ও উদ্ভিদ"
+];
+
+function makeChapterCard(name){
+return `<div class="item">
+<div style="font-size:15px;font-weight:600">${name}</div>
+<div class="row">
+<div class="chip" onclick="openDrive('PASTE_NOTE_LINK_HERE')">Notes (PDF)</div>
+<div class="chip" onclick="openDrive('PASTE_SHORT_LINK_HERE')">Short Notes (PDF)</div>
+<div class="chip" onclick="openDrive('PASTE_TEST_PAPER_LINK_HERE')">Test Paper (PDF)</div>
+<div class="chip" onclick="openDrive('PASTE_TEST_RESULT_JPG_LINK_HERE')">Result (Image/PDF)</div>
+</div>
+</div>`;
+}
+
+document.querySelector('#class8math .grid').innerHTML = mathChapters.map(makeChapterCard).join('');
+document.querySelector('#scienceList').innerHTML = scienceChapters.map(makeChapterCard).join('');
+
+function openSheet(id){
+closeAll();
+document.getElementById(id).classList.add('open');
+}
+function closeAll(){
+[...document.querySelectorAll('.sheet')].forEach(s=>s.classList.remove('open'));
+}
+document.addEventListener('click',e=>{if(e.target.classList.contains('sheet'))closeAll();});
+
+function toggleTheme(){document.body.classList.toggle('dark');}
+function openDrive(link){if(link.includes('PASTE')){alert('Paste your Google Drive view link in code');return;}window.open(link,'_blank');}
+</script></body>
+</html>
